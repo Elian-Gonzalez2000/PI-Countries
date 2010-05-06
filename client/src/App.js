@@ -22,10 +22,10 @@ function App() {
          <Router>
             <Nav />
             <Routes>
-               <Route path="/home" element={<Home />} />
+               <Route path="/index" element={<Init />} />
+               <Route path="/home" element={<Init />} />
                <Route path="/home/:id" element={<CountryDetails />} />
                <Route path="/activity" element={<FormActivity />} />
-               <Route path="/index" element={<Init />} />
             </Routes>
             <Footer>
                <p className="text-center">
