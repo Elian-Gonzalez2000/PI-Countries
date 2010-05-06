@@ -2,7 +2,7 @@ import "./App.css";
 import Nav from "./components/Nav.js";
 import Home from "./components/Home.js";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import Init from "./components/Init";
+import Init from "./components/Init.js";
 import CountryDetails from "./components/CountryDetails";
 import { FormActivity } from "./components/FormActivities";
 import styled from "styled-components";
@@ -25,7 +25,7 @@ function App() {
                <Route path="/home" element={<Home />} />
                <Route path="/home/:id" element={<CountryDetails />} />
                <Route path="/activity" element={<FormActivity />} />
-               <Route path="" element={<Init />} />
+               <Route path="/index" element={<Init />} />
             </Routes>
             <Footer>
                <p className="text-center">
