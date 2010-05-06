@@ -117,13 +117,13 @@ const Init = () => {
                      busqueda, entre estas opciones estan el filtrado por
                      continente, orden alfabetico o poblacion.
                   </p>
-                  <Link
+                  <a
                      href="https://restcountries.com"
                      target="_blank"
                      rel="noreferrer"
                   >
                      <Button>Restcountries</Button>
-                  </Link>
+                  </a>
                </div>
             </Grid>
          </ContainerContent>
