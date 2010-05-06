@@ -40,7 +40,7 @@ class Nav extends Component {
          <NavBarContainer>
             <NavBar>
                <div className="logo">
-                  <Link to="/index">Inicio</Link>
+                  <Link to="/">Inicio</Link>
                </div>
                <div className="nav-links">
                   <Link to="/home">Buscar Paises</Link>
