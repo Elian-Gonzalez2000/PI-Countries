@@ -19,9 +19,28 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {Country} = require('./src/db.js');
+const axios = require("axios");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true}).then(async () => {
+   const apiResponse = await axios.get("https://restcountries.com/v3/all");
+   const apiResults = apiResponse.data;
+   let api = apiResults.map((country)=>{
+         return {
+            ID: country.cca3,
+            name: country.name.common.toLowerCase(),
+            flagImg: country.flags[0],
+            continent: country.continents[0],
+            subregion: country.subregion,
+            capital: country.capital ? country.capital[0] : "No Tiene",
+            area: country.area,
+            population: country.population,
+         }
+   });
+   //console.log(api);
+   await Country.bulkCreate(api);
+
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
