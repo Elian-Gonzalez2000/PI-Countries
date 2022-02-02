@@ -1,17 +1,22 @@
-import React from "react";
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import "./Nav.css";
 
-const Nav = ()=>{
-  
-   return (<div>
-      <div>
-         <span>Logo</span>
-      </div>
-      <nav>
-         <Link to="/home" >Home</Link>
-         <Link to="/activity" >Crear Actividad</Link>
-      </nav>
-   </div>);
-}
+class Nav extends Component {
+
+   render() {
+      return (
+         <nav className='nav-bar'>
+            <div className='logo'>
+               <Link to="/" >Inicio</Link>
+            </div>
+            <div className='nav-links'>
+               <Link to="/home" >Home</Link>
+               <Link to="/activity" >Crear Actividad</Link>
+            </div>
+         </nav>
+      );
+   };
+};
 
 export default Nav;

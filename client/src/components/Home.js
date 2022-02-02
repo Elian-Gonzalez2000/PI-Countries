@@ -4,6 +4,8 @@ import {filterByActivity, filterByContinent, getActivities, getCountries, getCou
 import CountryCard from "./CountryCard";
 import { Link } from "react-router-dom";
 import Paginado from "./Paginate";
+import "./Home.css";
+import Preloader from "./Preloader";
 
 const initialState = {
    input:{
@@ -14,11 +16,9 @@ const initialState = {
 
 export function validate(input) {
   let errors = {};
-  if (!input.countriesName) {
-    errors.countriesName = 'Country is required';
-  } else if (!/\S+@\S+\.\S+/.test(input.countriesName)) {
-    errors.countriesName = 'Country is invalid';
-  }
+  if (!/^[a-z ,.'-]+$/i.test(input.countriesName) && input.countriesName ) {
+     errors.countriesName = 'Pais invalido';
+  } 
 
   return errors;
 };
@@ -29,6 +29,7 @@ const Home = ()=>{
 	});
 
 	const [errors, setErrors] = useState(initialState.errors);
+	const [loader, setLoader] = useState(true);
    const allCountries = useSelector((state)=>state.allCountries);
    const countries = useSelector((state)=>state.countries);
    const allActivities = useSelector((state) => state.activities)
@@ -48,11 +49,6 @@ const Home = ()=>{
 
     const paginado = (totalPages)=>{
         setCurrentPage(totalPages);
-    }
-
-    const changeOrder = (e) => {
-        e.preventDefault()
-        setOrder(e.target.value)
     }
 
     function handleSort(e){
@@ -81,11 +77,16 @@ const Home = ()=>{
     }
 
    useEffect(()=>{
+      setLoader(true);
       dispatch(getCountries());
       dispatch(getActivities());
+      setLoader(false);
    },[]);
    useEffect(()=>{
+      if(!errors.countriesName){
          dispatch(getCountriesByName(input.countriesName));
+         
+      }
    },[input.countriesName]);
    
 
@@ -102,9 +103,12 @@ const Home = ()=>{
       }));
    };
    //console.log("12" ,countries );
-   return (<div>
-      <input type="text" name="countriesName" value={input.countriesName} onChange={handleInputChange} />
-      <div>
+   return (<div className="home">
+      <h2 className="margin-top text-center">Consulte el Pais que Desee</h2>
+      <input type="text" name="countriesName" value={input.countriesName} onChange={handleInputChange} className={errors.name && "inputError"} />
+      {errors.countriesName && (<p className="inputErrorMessage">{errors.countriesName}</p>)}
+      <div className="filterInputs">
+
             <select className="select" onChange={e=> handleFilterPoblation(e)}>
           <option className='option' value='0'>Ordenar por poblacion</option> 
             <option value="asc">Ascendente</option>
@@ -127,19 +131,21 @@ const Home = ()=>{
             </select>
             <select onChange={event => handleFilterActivity(event)} >
                 <option value="All">Todas</option>
-                { allActivities && allActivities.map(activity => (
-                    <option value={activity.name}>{activity.name}</option>
+                { allActivities && allActivities.map((activity,i) => (
+                    <option key={i} value={activity.name}>{activity.name}</option>
                 ))}
             </select>
-            </div>
-      <h1>Home</h1>
-      <Paginado 
-                countriesPage={countriesPage}
-                allCountries={allCountries.length}
-                paginado={paginado}
-            />
+         </div>
+      <div className="pagination margin-top margin-bottom magin-auto">
+         <Paginado 
+            countriesPage={countriesPage}
+            allCountries={allCountries.length}
+            paginado={paginado}
+         />
+      </div>
+      <div className="cardsCountries">
       {
-            currentCountries && currentCountries.map((country)=>{
+            (currentCountries && !errors.countriesName)&& currentCountries.map((country)=>{
                   return (
                      <Link key={country.ID} to={`/home/${country.ID}`}>
                         <CountryCard key={country.ID} name={country.name} flagImg={country.flagImg} continent={country.continent} />
@@ -147,6 +153,10 @@ const Home = ()=>{
                   );
             })
       }
+      {
+         loader && <Preloader/>
+      }
+      </div>
    </div>);
 }
 

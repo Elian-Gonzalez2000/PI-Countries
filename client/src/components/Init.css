@@ -1,0 +1,9 @@
+.init{
+   background-color: var(--background-light);
+  background-image: url(../assest/countries-image.jpg);
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

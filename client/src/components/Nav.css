@@ -1,0 +1,26 @@
+.nav-bar{
+   width: 100vw;
+   max-width: 1200px;
+   background-color: var(--third-color);
+   color: var(--gray-light-color);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1rem 1.5rem;
+}
+
+.nav-bar a{
+   display: inline-block;
+   font-size: 1.25rem;
+   font-weight: bold;
+   padding: .5rem;
+   color: var(--gray-light-color);
+   border-radius: .5rem;
+   cursor: pointer;
+   transition: ease all .3s;
+}
+
+.nav-bar a:hover{
+   color: var(--gray-dark-color);
+   background-color: var(--gray-light-color);
+}

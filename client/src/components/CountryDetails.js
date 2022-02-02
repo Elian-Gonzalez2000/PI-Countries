@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link,useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getCountryDetails } from "../actions";
 import ActivityCard from "./ActivityCard";
+import "./CountryDetails.css";
 
 const CountryDetails = ()=>{
    const dispatch = useDispatch();
@@ -13,20 +14,18 @@ const CountryDetails = ()=>{
    const details = useSelector(state => state.countryDetails)
    console.log(details);
    return(
-      <div>
-         <Link to={"/home"}>
-            Home
-         </Link>
+      <div className="countryDetails">
          <div>
-            <p>{details.ID}</p>
-            <p>{details.name}</p>
-            <p>{details.subregion}</p>
-            <p>{details.capital}</p>
-            <p>{details.continent}</p>
-            <p>{details.area}</p>
-            <p>{details.population}</p>
+            <p><strong>Identificador de pais: </strong> {details.ID}</p>
+            <p><strong>Nombre: </strong> {details.name}</p>
+            <p><strong>Subregion: </strong> {details.subregion}</p>
+            <p><strong>Capita: </strong> {details.capital}</p>
+            <p><strong>Continente: </strong> {details.continent}</p>
+            <p><strong>Area: </strong> {details.area + " km2"}</p>
+            <p><strong>Poblacion: </strong> {details.population}</p>
             <img src={details.flagImg} alt={details.name} />
          </div>
+         <div className="activitiesCard"> 
          {details.activities && details.activities.map((activities)=>{
             return (<div key={details.ID}>
             <ActivityCard name={activities.name}
@@ -35,8 +34,8 @@ const CountryDetails = ()=>{
             duration={activities.duration} />
             </div>);
          })
-         
          }
+         </div>
       </div>
    )
 };

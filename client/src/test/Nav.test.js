@@ -23,12 +23,12 @@ describe("<Nav />", () => {
 
   it('Debería tener un Link con el texto "Home" que cambie la ruta hacia "/home"', () => {
     // El orden en el que se declaran los Links es importante!
-    expect(nav.find(Link).at(1).prop("to")).toEqual("/");
+    expect(nav.find(Link).at(1).prop("to")).toEqual("/home");
     expect(nav.find(Link).at(1).text()).toEqual("Home");
   });
 
   it('Debería tener un segundo Link, con texto "Create activity" y que cambie la ruta hacia "/activity"', () => {
     expect(nav.find(Link).at(2).prop("to")).toEqual("/activity");
-    expect(nav.find(Link).at(2).text()).toEqual("Create activity");
+    expect(nav.find(Link).at(2).text()).toEqual("Crear Actividad");
   });
 });

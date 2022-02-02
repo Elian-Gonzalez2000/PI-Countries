@@ -1,0 +1,41 @@
+.home img{
+   width: 6rem;
+}
+
+input[type="text"]{
+   display: block;
+   width: 30%;
+   outline: none;
+   margin: 1rem auto;
+}
+
+input[type="text"]:focus{
+   border-color: var(--third-color);
+}
+
+.filterInputs{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   padding: 1rem 0;
+   width: 100%;
+}
+
+.filterInputs select{
+   display: inline-block;
+   width: 20%;
+}
+
+.cardsCountries{
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   justify-content: space-evenly;
+   gap: 1rem;
+   margin: 0 1rem;
+}
+
+.inputErrorMessage{
+   color: #df1313;
+   font-weight: bold;
+   text-align: center;
+}

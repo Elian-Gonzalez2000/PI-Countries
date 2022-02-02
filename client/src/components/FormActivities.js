@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { postActivities, getCountries } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import "./FormActivities.css"
 
 const initialState = {
    errors: {},
@@ -77,8 +77,6 @@ export const FormActivity = () => {
     });
   };
 
-  
-
   useEffect(()=>{
       dispatch(getCountries());
    },[]);
@@ -86,29 +84,24 @@ export const FormActivity = () => {
    //console.log(allcountries);
 
   return (
-    <div className='containerForm'>
-      <Link className='btnBack' to="/home">
-      <i className="fas fa-arrow-left"></i>  Volver
-      </Link>
-      
-      <div className='containerFormulario'>
-      <h2>Crea tu Actividad </h2>
-      <div className='formulario'>
+    <div className='formActivities text-center'>
+      <div className='containerForm'>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label className='lbl'>Actividad:</label>
+        <div className="activityName">
+      <h2>Crea tu Actividad </h2>
+          <label>Actividad:</label>
           <input
           className={'inputActivity ' + errors.name && "inputError"}
             type="text"
             value={input.name}
             name="name"
-            onChange={handleChange}
+            onChange={(e) => handleChange(e)}
           />
           {errors.name && (<p className="inputErrorMessage">{errors.name}</p>)}
         </div>
-        <div>
-          <label className='lbl'>Pais:</label>
-          <select className='select selectForm selectCountry' onChange={(e) => handleSelect(e)}>
+        <div className="selectCountries">
+          <label>Pais:</label>
+          <select onChange={(e) => handleSelect(e)}>
            {/*  <option value="0">Select Country</option> */}
             {allcountries && allcountries.map((country, i) => {
                 return (<option value={country.ID} key={i}>
@@ -117,15 +110,13 @@ export const FormActivity = () => {
             })}
           </select>
           <ul>
-            <li className='lista'>{input.countries&&input.countries.map((el) => el + " ,")}</li>
+            <li className='listCountries'>{input.countries&&input.countries.map((el) => el + " ,")}</li>
           </ul>
         </div>
 
-        <div className='duracion'>
-          <label className='lbl'>Duracion:</label>
+        <div className='duration'>
+          <label>Duracion:</label>
           <select
-             className='select selectForm' 
-            defaultValue={{  value: 0 }}
             name="duracion"
             value={input.duracion}
             onChange={(e) => handleChange(e)}
@@ -139,10 +130,9 @@ export const FormActivity = () => {
             <option value="5">more than 5 hours</option>
           </select>
         </div>
-        <div>
-          <label className='lbl'>Dificultad:</label>
+        <div className="selectDifficulty">
+          <label>Dificultad:</label>
           <select
-          className='select selectFormy'
             name="dificultad"
             value={input.dificultad}
             onChange={(e) => handleChange(e)}
@@ -155,24 +145,23 @@ export const FormActivity = () => {
             <option value="5">5- Professional</option>
           </select>
         </div>
-        <div >
-                    <label >Temporada: </label>
-                    <label>
-                    <input type="radio" value='Verano' name='season' onChange={(e) => handleCheck(e)}/>
-                    Verano</label>
-                    <label>
-                    <input type="radio" value='Primavera' name='season' onChange={(e) => handleCheck(e)}/>
-                    Primavera</label>
-                    <label>
-                    <input type="radio" value='Otoño' name='season' onChange={(e) => handleCheck(e)}/>
-                    Otoño</label>
-                    <label>
-                    <input type="radio" value='Invierno' name='season' onChange={(e) => handleCheck(e)}/>
-                    Invierno</label>
-                </div>
+        <div className="selectSeason">
+            <label >Temporada: </label>
+               <label>
+                  <input type="radio" value='Verano' name='season' onChange={(e) => handleCheck(e)}/>
+                    Verano  </label>
+               <label>
+                  <input type="radio" value='Primavera' name='season' onChange={(e) => handleCheck(e)}/>
+                    Primavera  </label>
+               <label>
+                  <input type="radio" value='Otoño' name='season' onChange={(e) => handleCheck(e)}/>
+                    Otoño  </label>
+               <label>
+                  <input type="radio" value='Invierno' name='season' onChange={(e) => handleCheck(e)}/>
+                    Invierno  </label>
+         </div>
         <button className='btnSubmit' type="submit">Create</button>
       </form>
-      </div>
       </div>
     </div>
   );

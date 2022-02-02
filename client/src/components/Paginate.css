@@ -1,0 +1,21 @@
+.paginate ul{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   align-items: center;
+   margin: 0 1rem;
+}
+
+.paginate li{
+   display: inline-block;
+}
+
+.paginate a {
+   color: var(--gray-light-color);
+   transition: ease all .3s;
+   cursor: pointer;
+}
+
+.paginate a:hover{
+   color: var(--link-color);
+}

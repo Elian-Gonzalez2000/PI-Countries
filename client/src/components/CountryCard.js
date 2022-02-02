@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import "./CountryCard.css";
 
 const CountryCard = ({name, flagImg, continent})=>{
    return(
-      <div className="card">
+      <div className="countryCard margin-bottom">
          <h4>{name}</h4>
-                  <img width={100} src={flagImg} alt={name} />
+                  <img src={flagImg} alt={name} />
                   <p>{continent}</p>
       </div>
    )
