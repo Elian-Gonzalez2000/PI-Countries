@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Paginado from "./Paginate";
 import "./Home.css";
 import Preloader from "./Preloader";
+import loading from "../assest/loader.svg";
 
 const initialState = {
    input:{
@@ -36,7 +37,7 @@ const Home = ()=>{
    const dispatch = useDispatch();
 
    const [currentPage, setCurrentPage] = useState(1)
-    // Cantidad de paises por pagina
+
     const [countriesPage, setCountriesPage] = useState(9)
 
     const [order, setOrder] = useState('');
@@ -105,6 +106,7 @@ const Home = ()=>{
    //console.log("12" ,countries );
    return (<div className="home">
       <h2 className="margin-top text-center">Consulte el Pais que Desee</h2>
+      
       <input type="text" name="countriesName" value={input.countriesName} onChange={handleInputChange} className={errors.name && "inputError"} />
       {errors.countriesName && (<p className="inputErrorMessage">{errors.countriesName}</p>)}
       <div className="filterInputs">
@@ -144,6 +146,7 @@ const Home = ()=>{
          />
       </div>
       <div className="cardsCountries">
+         {loader && <div className="preloader"> <img  src={loading}alt="cargando..." /></div>}
       {
             (currentCountries && !errors.countriesName)&& currentCountries.map((country)=>{
                   return (
@@ -152,9 +155,6 @@ const Home = ()=>{
                      </Link>
                   );
             })
-      }
-      {
-         loader && <Preloader/>
       }
       </div>
    </div>);
