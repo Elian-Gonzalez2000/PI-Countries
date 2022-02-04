@@ -83,6 +83,8 @@ const Home = ()=>{
       dispatch(getActivities());
       setLoader(false);
    },[]);
+
+
    useEffect(()=>{
       if(!errors.countriesName){
          dispatch(getCountriesByName(input.countriesName));
@@ -141,7 +143,7 @@ const Home = ()=>{
       <div className="pagination margin-top margin-bottom magin-auto">
          <Paginado 
             countriesPage={countriesPage}
-            allCountries={allCountries.length}
+            allCountries={countries.length}
             paginado={paginado}
          />
       </div>
