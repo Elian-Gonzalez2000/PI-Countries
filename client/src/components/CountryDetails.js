@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom'
-import { getCountryDetails } from "../actions";
 import ActivityCard from "./ActivityCard";
 import "./CountryDetails.css";
 
 const CountryDetails = ()=>{
-   const dispatch = useDispatch();
    const {id} = useParams();
+   const [details, setDetails] = useState({});
    useEffect(()=>{
-      dispatch(getCountryDetails(id));
-   },[])
-   const details = useSelector(state => state.countryDetails)
+      fetch(`http://localhost:3001/countries/${id}`)
+      .then(response => response.json())
+      .then(json => {
+        return setDetails(json)
+     });
+      
+   },[id])
    console.log(details);
    return(
       <div className="countryDetails">

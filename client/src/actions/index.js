@@ -7,28 +7,41 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const FILTER_CONTINENT = "FILTER_CONTINENT";
 export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const ORDER_BY_POBLATION = "ORDER_BY_POBLATION";
+export const GET_LOAD_STATUS = "GET_LOAD_STATUS";
 
+
+export function setLoadStatus(payload) {
+   return {
+      type: GET_LOAD_STATUS,
+      payload,
+   }
+};
 
 export function addActivity(payload) {
   return { type: "ADD_ACTIVITY", payload };
 }
 
 export function getCountries() {
-  return (dispatch)=>{
+   return (dispatch)=>{
+     dispatch(setLoadStatus(true));
   	return fetch(`http://localhost:3001/countries/`)
       .then(response => response.json())
       .then(json => {
-        return dispatch({ type: GET_COUNTRIES, payload: json });
+         dispatch(setLoadStatus(false));
+         return dispatch({ type: GET_COUNTRIES, payload: json });
      });
   };
+
 }
 
 export function getCountriesByName(input) {
   return (dispatch)=>{
+     dispatch(setLoadStatus(true));
   	return fetch(`http://localhost:3001/countries?name=${input}`)
       .then(response => response.json())
       .then(json => {
-        dispatch({ type: GET_COUNTRIES_BY_NAME, payload: json });
+        dispatch(setLoadStatus(false));
+        return dispatch({ type: GET_COUNTRIES_BY_NAME, payload: json });
      });
   };
 }

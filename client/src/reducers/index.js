@@ -1,14 +1,21 @@
-import {GET_COUNTRIES, ADD_ACTIVITY, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAILS, GET_ACTIVITIES, ORDER_BY_NAME, FILTER_CONTINENT,FILTER_ACTIVITY, ORDER_BY_POBLATION} from "../actions/index.js";
+import {GET_COUNTRIES, ADD_ACTIVITY, GET_COUNTRIES_BY_NAME, GET_COUNTRY_DETAILS, GET_ACTIVITIES, ORDER_BY_NAME, FILTER_CONTINENT,FILTER_ACTIVITY, ORDER_BY_POBLATION, GET_LOAD_STATUS} from "../actions/index.js";
 
 const initialState = {
 	allCountries: [],
 	countryDetails: [],
    countries: [],
    activities: [],
+   isLoading: false
 };
 
 export default function rootReducer(state = initialState, actions){
 	switch(actions.type){
+      case GET_LOAD_STATUS:
+      return {
+         ...state,
+         isLoading: actions.payload
+      };
+      
 		case GET_COUNTRIES:
 			return{
             ...state,

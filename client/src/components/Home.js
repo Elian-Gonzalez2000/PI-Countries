@@ -5,7 +5,6 @@ import CountryCard from "./CountryCard";
 import { Link } from "react-router-dom";
 import Paginado from "./Paginate";
 import "./Home.css";
-import Preloader from "./Preloader";
 import loading from "../assest/loader.svg";
 
 const initialState = {
@@ -30,17 +29,17 @@ const Home = ()=>{
 	});
 
 	const [errors, setErrors] = useState(initialState.errors);
-	const [loader, setLoader] = useState(true);
-   const allCountries = useSelector((state)=>state.allCountries);
+   //const allCountries = useSelector((state)=>state.allCountries);
    const countries = useSelector((state)=>state.countries);
    const allActivities = useSelector((state) => state.activities)
+   const isLoading = useSelector((state) => state.isLoading)
    const dispatch = useDispatch();
 
    const [currentPage, setCurrentPage] = useState(1)
 
     const [countriesPage, setCountriesPage] = useState(9)
 
-    const [order, setOrder] = useState('');
+    //const [order, setOrder] = useState('');
     //Posicion del ultimo pais
     const LastCountry = currentPage * countriesPage
     //Posicion del primer pais
@@ -56,14 +55,14 @@ const Home = ()=>{
         e.preventDefault();
         dispatch(orderName(e.target.value));
         setCurrentPage(1);
-        setOrder(`Ordenado ${e.target.value}`)
+        //setOrder(`Ordenado ${e.target.value}`)
     }
 
     const handleFilterPoblation = (e)=>{
       e.preventDefault();
       dispatch(orderByPoblation(e.target.value));
       setCurrentPage(1);
-      setOrder(`Ordenado ${e.target.value}`)
+      //setOrder(`Ordenado ${e.target.value}`)
   }
 
     function handleFilterContinent(e){
@@ -78,19 +77,16 @@ const Home = ()=>{
     }
 
    useEffect(()=>{
-      setLoader(true);
       dispatch(getCountries());
       dispatch(getActivities());
-      setLoader(false);
-   },[]);
-
+   }, [dispatch]);
+   
 
    useEffect(()=>{
       if(!errors.countriesName){
          dispatch(getCountriesByName(input.countriesName));
-         
       }
-   },[input.countriesName]);
+   }, [input.countriesName]);
    
 
    const handleInputChange = (e)=>{
@@ -105,8 +101,9 @@ const Home = ()=>{
          [e.target.name]: e.target.value,
       }));
    };
-   //console.log("12" ,countries );
+   //console.log("12" ,isLoading );
    return (<div className="home">
+   {isLoading && <div className="preloader"> <img  src={loading} alt="cargando..." /></div>}
       <h2 className="margin-top text-center">Consulte el Pais que Desee</h2>
       
       <input type="text" name="countriesName" value={input.countriesName} onChange={handleInputChange} className={errors.name && "inputError"} />
@@ -148,7 +145,7 @@ const Home = ()=>{
          />
       </div>
       <div className="cardsCountries">
-         {loader && <div className="preloader"> <img  src={loading}alt="cargando..." /></div>}
+         
       {
             (currentCountries && !errors.countriesName)&& currentCountries.map((country)=>{
                   return (
