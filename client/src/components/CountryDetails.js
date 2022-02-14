@@ -5,7 +5,6 @@ import { setLoadStatus } from "../actions";
 import styled from "styled-components";
 import ActivityCard from "./ActivityCard";
 import loading from "../assest/loader.svg";
-import "./CountryDetails.css";
 
 const Details = styled.div`
   width: 95%;
@@ -13,12 +12,12 @@ const Details = styled.div`
   grid-template-columns: ${({ activities }) =>
     activities ? "repeat(2, 1fr)" : "repeat(1, 1fr)"};
   justify-content: space-around;
-  align-items: center;
   gap: 1rem;
-  margin: 0 auto;
+  margin: 2rem auto;
 
-  &.activitiesCard {
+  & .activitiesCard {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 `;
@@ -51,7 +50,7 @@ const CountryDetails = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  console.log(details);
+  //console.log(details);
   return (
     <div className="countryDetails">
       {isLoading && (
@@ -60,7 +59,7 @@ const CountryDetails = () => {
           <img src={loading} alt="cargando..." />
         </div>
       )}
-      <h2>{`Detalles del pais ${details.name}`}</h2>
+      <h2 className="margin-top text-center">{`Detalles del pais ${details.name}`}</h2>
       <Details
         activities={details.activities && !details.activities[0] ? false : true}
       >

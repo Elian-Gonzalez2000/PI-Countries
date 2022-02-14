@@ -1,30 +1,42 @@
 import React from "react";
-import "./ActivityCard.css";
+import styled from "styled-components";
+
+const ActivityCardContainer = styled.div`
+  text-align: left;
+  width: 47%;
+  padding: 0 1rem;
+`;
+
+const ActivitiesP = styled.p`
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+`;
 
 const ActivityCard = (activity) => {
   return (
-    <div className="activityCard">
+    <>
       {activity && (
-        <div>
-          <p>
+        <ActivityCardContainer>
+          <ActivitiesP>
             <strong>Actividad: </strong>
             {activity.name}
-          </p>
-          <p>
+          </ActivitiesP>
+          <ActivitiesP>
             <strong>Dificultad: </strong>
             {activity.difficulty}
-          </p>
-          <p>
+          </ActivitiesP>
+          <ActivitiesP>
             <strong>Duracion: </strong>
             {activity.duration}
-          </p>
-          <p>
+          </ActivitiesP>
+          <ActivitiesP>
             <strong>Temporada: </strong>
             {activity.season}
-          </p>
-        </div>
+          </ActivitiesP>
+        </ActivityCardContainer>
       )}
-    </div>
+    </>
   );
 };
 
