@@ -5,23 +5,26 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("activity", {
-     ID: {
+    ID: {
       type: DataTypes.INTEGER,
       allowNull: true,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: true,
-    },difficulty:{
-      type: DataTypes.ENUM("1","2","3","4","5"),
+    },
+    difficulty: {
+      type: DataTypes.ENUM("1", "2", "3", "4", "5"),
       allowNull: true,
-    },duration:{
+    },
+    duration: {
       type: DataTypes.STRING,
       allowNull: true,
-    },season:{
-      type: DataTypes.ENUM("Verano","Invierno","Otoño","Primavera"),
+    },
+    season: {
+      type: DataTypes.ENUM("Verano", "Invierno", "Otoño", "Primavera"),
       allowNull: true,
     },
   });
