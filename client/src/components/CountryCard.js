@@ -5,9 +5,11 @@ const CountryCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   background-color: var(--gray-light-color);
   color: var(--gray-dark-color);
   cursor: pointer;
+  padding: 1rem;
   transition: ease transform 0.5s;
 
   &:hover {
@@ -17,22 +19,28 @@ const CountryCardContainer = styled.div`
   & h4 {
     text-align: center;
     text-transform: capitalize;
+    margin-top: 1rem;
+    font-size: 1.2rem;
   }
 
   & p {
     text-align: center;
     text-transform: capitalize;
+    font-size: 1.2rem;
   }
 `;
 
 const CountryImg = styled.img`
-  width: 100%;
+  && {
+    width: 120px;
+    height: 80px;
+  }
 `;
 
 const CountryCard = ({ name, flagImg, continent }) => {
   return (
     <CountryCardContainer>
-      <CountryImg src={flagImg} alt={name} />
+      <CountryImg className="countryImg" src={flagImg} alt={name} />
       <h4>{name}</h4>
       <p>{continent}</p>
     </CountryCardContainer>

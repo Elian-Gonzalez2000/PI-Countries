@@ -1,5 +1,28 @@
 import React from "react";
-import "./Paginate.css";
+import styled from "styled-components";
+
+const PaginateUl = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 1rem;
+
+  & li {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+`;
+
+const PaginateLink = styled.span`
+  color: var(--gray-dark-color);
+  transition: ease all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--link-color);
+  }
+`;
 
 export default function Paginado({ countriesPage, allCountries, paginado }) {
   const pageNumbers = [];
@@ -10,14 +33,16 @@ export default function Paginado({ countriesPage, allCountries, paginado }) {
 
   return (
     <div className="paginate">
-      <ul>
+      <PaginateUl>
         {pageNumbers &&
           pageNumbers.map((number) => (
             <li key={number}>
-              <a onClick={() => paginado(number)}>{number}</a>
+              <PaginateLink onClick={() => paginado(number)}>
+                {number}
+              </PaginateLink>
             </li>
           ))}
-      </ul>
+      </PaginateUl>
     </div>
   );
 }
