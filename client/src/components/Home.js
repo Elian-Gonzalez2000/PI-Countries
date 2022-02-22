@@ -111,7 +111,7 @@ const Home = () => {
   };
   //console.log("12", countries);
   return (
-    <div className="home">
+    <div className="home container">
       {isLoading && (
         <div className="preloader">
           <img src={loading} alt="cargando..." />

@@ -1,40 +1,41 @@
-.containerForm form{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-evenly;
-   align-items: center;
-   margin: 1rem;
+.containerForm form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.activityName{
-   width: 100%;
-   margin-bottom: 1.5rem;
+.activityName {
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
 
-.activityName input{
-   padding: .25rem .5rem;
+.activityName input {
+  padding: 0.25rem 0.5rem;
 }
 
-.containerForm label{
-   font-size: 1.2rem;
-   font-weight: bold;
+.containerForm label {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.duration, .selectDifficulty, .selectCountries {
-   width: 30%;
+.duration,
+.selectDifficulty,
+.selectCountries {
+  width: 30%;
 }
 
-.selectSeason{
-   width: 100%;
-   margin-bottom: 1.5rem;
-   margin-top: 2rem;
+.selectSeason {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
 }
 
-.btnSubmit{
-   font-size: 1rem;
-   padding: .5rem 1rem;
-   margin-top: 1rem;
-   border-radius: 5px;
-   cursor: pointer;
-   outline: none;
+.btnSubmit {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
 }

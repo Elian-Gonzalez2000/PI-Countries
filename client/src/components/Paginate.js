@@ -6,11 +6,10 @@ const PaginateUl = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 0 1rem;
 
   & li {
     display: inline-block;
-    margin: 0 0.5rem;
+    margin: 0 0.5rem 0.5rem 0.5rem;
   }
 `;
 

@@ -52,7 +52,7 @@ const CountryDetails = () => {
 
   //console.log(details);
   return (
-    <div className="countryDetails">
+    <div className="countryDetails container margin-auto">
       {isLoading && (
         <div className="preloader">
           {" "}

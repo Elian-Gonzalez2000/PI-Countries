@@ -88,7 +88,7 @@ export const FormActivity = () => {
   //console.log(allcountries);
 
   return (
-    <div className="formActivities text-center">
+    <div className="formActivities text-center container margin-auto">
       <div className="containerForm">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="activityName">
