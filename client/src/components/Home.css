@@ -1,42 +1,42 @@
 .home img {
-  width: 6rem;
+   width: 6rem;
 }
 
 input[type="text"] {
-  display: block;
-  width: 30%;
-  outline: none;
-  margin: 1rem auto;
-  padding: 0.3rem 0.5rem;
+   display: block;
+   width: 30%;
+   outline: none;
+   margin: 1rem auto;
+   padding: 0.3rem 0.5rem;
 }
 
 input[type="text"]:focus {
-  border-color: var(--first-color);
+   border: 1px solid var(--first-color);
 }
 
 .filterInputs {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1rem 0;
+   width: 100%;
 }
 
 .filterInputs select {
-  display: inline-block;
-  width: 22.5%;
-  padding: 0.3rem 0.5rem;
+   display: inline-block;
+   width: 22.5%;
+   padding: 0.3rem 0.5rem;
 }
 
 .cardsCountries {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: space-evenly;
-  gap: 1rem;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   justify-content: space-evenly;
+   gap: 1rem;
 }
 
 .inputErrorMessage {
-  color: #df1313;
-  font-weight: bold;
-  text-align: center;
+   color: #df1313;
+   font-weight: bold;
+   text-align: center;
 }

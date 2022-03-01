@@ -1,7 +1,91 @@
 import React, { useState, useEffect } from "react";
 import { postActivities, getCountries } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
-import "./FormActivities.css";
+import styled from "styled-components";
+//import "./FormActivities.css";
+
+const ContainerForm = styled.div`
+   margin-top: 2rem;
+
+   form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .btnSubmit {
+         width: 30%;
+         height: 100%;
+         font-size: 1rem;
+         padding: 0.5rem 1rem;
+         margin-top: 2.5rem;
+         color: var(--text-light-color);
+         background-color: var(--first-color);
+         border: none;
+         border-radius: 5px;
+         text-align: center;
+         cursor: pointer;
+         outline: none;
+      }
+   }
+
+   label {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+   }
+`;
+
+const ContainerInputs = styled.div`
+   width: 47%;
+
+   .activityName {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      text-align: left;
+
+      input {
+         width: 80%;
+      }
+
+      .inputError {
+         border: solid 1px #df1313;
+      }
+   }
+
+   .duration,
+   .selectDifficulty,
+   .selectCountries {
+      width: 100%;
+   }
+`;
+
+const SelectSeason = styled.div`
+   width: 47%;
+   heigth: 100%;
+   padding: 2rem 0 0 1rem;
+
+   input {
+      display: inline-block;
+      margin-right: 1rem;
+   }
+
+   label {
+      cursor: pointer;
+   }
+`;
+
+const CountriesSelected = styled.div`
+   width: 47%;
+   order: 1;
+   li {
+      display: inline-block;
+      width: 50px;
+      margin: 0.5rem;
+      cursor: pointer;
+   }
+`;
 
 const initialState = {
    errors: {},
@@ -78,8 +162,12 @@ export const FormActivity = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
       console.log(input);
-      dispatch(postActivities(input));
-      alert("actividad creada");
+      if (!input.name) {
+         alert("Escriba una actividad para agregarla");
+      } else {
+         dispatch(postActivities(input));
+         alert("actividad creada");
+      }
 
       setInput({
          countries: [],
@@ -98,16 +186,16 @@ export const FormActivity = () => {
 
    return (
       <div className="formActivities container margin-auto">
-         <div className="containerForm">
+         <ContainerForm>
             <h2>Crea tu Actividad </h2>
             <form onSubmit={(e) => handleSubmit(e)}>
-               <div className="containerInputs">
+               <ContainerInputs>
                   <div className="activityName">
                      <label>Actividad:</label>
                      <input
-                        className={
-                           "inputActivity " + errors.name && "inputError"
-                        }
+                        className={`inputActivity ${
+                           errors.name && "inputError"
+                        }`}
                         type="text"
                         value={input.name}
                         name="name"
@@ -167,8 +255,8 @@ export const FormActivity = () => {
                         <option value="5">5- Professional</option>
                      </select>
                   </div>
-               </div>
-               <div className="selectSeason">
+               </ContainerInputs>
+               <SelectSeason>
                   <label>Temporada: </label>
                   <label>
                      <input
@@ -206,23 +294,22 @@ export const FormActivity = () => {
                      />
                      Invierno{" "}
                   </label>
-               </div>
-               <div className="countriesSelected">
+               </SelectSeason>
+               <CountriesSelected>
                   <ul>
                      {input.countries &&
                         flagsImg.map((el) => {
                            return (
                               <li key={el.countryID + "flagCountry"}>
                                  <img
-                                    style={{ width: "32px" }}
                                     src={el.flag}
-                                    alt="Flag"
+                                    alt={"Flag" + el.countryID}
                                  />
                               </li>
                            );
                         })}
                   </ul>
-               </div>
+               </CountriesSelected>
                <button
                   className="btnSubmit"
                   type="submit"
@@ -231,7 +318,7 @@ export const FormActivity = () => {
                   Create
                </button>
             </form>
-         </div>
+         </ContainerForm>
       </div>
    );
 };
