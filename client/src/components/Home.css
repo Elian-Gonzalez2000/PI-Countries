@@ -2,16 +2,22 @@
    width: 6rem;
 }
 
+.home h2 {
+   color: var(--first-color);
+   margin-bottom: 2rem;
+}
+
 input[type="text"] {
    display: block;
    width: 30%;
    outline: none;
+   box-shadow: 2px 1px 4px var(--black-alpha-color);
    margin: 1rem auto;
    padding: 0.3rem 0.5rem;
 }
 
 input[type="text"]:focus {
-   border: 1px solid var(--first-color);
+   border: 2px solid var(--first-color);
 }
 
 .filterInputs {

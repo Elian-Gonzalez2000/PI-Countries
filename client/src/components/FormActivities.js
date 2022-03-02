@@ -7,6 +7,10 @@ import styled from "styled-components";
 const ContainerForm = styled.div`
    margin-top: 2rem;
 
+   h2 {
+      color: var(--first-color);
+   }
+
    form {
       display: flex;
       flex-wrap: wrap;
@@ -47,10 +51,17 @@ const ContainerInputs = styled.div`
 
       input {
          width: 80%;
+         margin-left: 0;
+         margin-right: 0;
+         box-shadow: 2px 1px 4px var(--black-alpha-color);
       }
 
       .inputError {
-         border: solid 1px #df1313;
+         border: solid 2px #df1313;
+      }
+
+      .inputErrorMessage {
+         width: 80%;
       }
    }
 
@@ -79,6 +90,8 @@ const SelectSeason = styled.div`
 const CountriesSelected = styled.div`
    width: 47%;
    order: 1;
+   margin-top: -4rem;
+
    li {
       display: inline-block;
       width: 50px;
@@ -157,6 +170,21 @@ export const FormActivity = () => {
             [e.target.name]: e.target.value,
          })
       );
+   };
+
+   const handleClickFlag = (flagID) => {
+      let filterFlag =
+         flagsImg && flagsImg.filter((el) => el.countryID !== flagID);
+
+      setFlagsImg([...filterFlag]);
+
+      let deletedCountry = input.countries.filter((el) => el !== flagID);
+      console.log(flagID, filterFlag, deletedCountry);
+
+      setInput({
+         ...input,
+         countries: [...deletedCountry],
+      });
    };
 
    const handleSubmit = (e) => {
@@ -304,6 +332,9 @@ export const FormActivity = () => {
                                  <img
                                     src={el.flag}
                                     alt={"Flag" + el.countryID}
+                                    onClick={() =>
+                                       handleClickFlag(el.countryID)
+                                    }
                                  />
                               </li>
                            );
