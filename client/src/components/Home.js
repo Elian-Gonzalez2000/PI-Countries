@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
    filterByActivity,
@@ -47,13 +47,16 @@ const Home = () => {
 
    const [countriesPage, setCountriesPage] = useState(9);
 
-   const [order, setOrder] = useState("");
+   const [order, setOrder] = useState({ filter: "", order: "" });
    //Posicion del ultimo pais
    const LastCountry = currentPage * countriesPage;
    //Posicion del primer pais
    const FirstCountry = LastCountry - countriesPage;
    // Se divide el array de acuerdo a la cantidad de paises necesarios (9)
    const currentCountries = countries.slice(FirstCountry, LastCountry);
+
+   const filterPoblation = useRef(null);
+   const filterSort = useRef(null);
 
    const paginado = (totalPages) => {
       setCurrentPage(totalPages);
@@ -63,27 +66,43 @@ const Home = () => {
       e.preventDefault();
       dispatch(orderName(e.target.value));
       setCurrentPage(1);
-      setOrder(`sort`);
+      if (
+         order.filter === "poblation" &&
+         filterPoblation.current.selectedOptions[0].value
+      ) {
+         filterPoblation.current.selectedOptions[0].selected = false;
+         filterPoblation.current.firstElementChild.selected = true;
+         console.log("sort");
+      }
+      setOrder({ filter: `sort`, order: e.target.value });
    }
 
    const handleFilterPoblation = (e) => {
-      e.preventDefault();
       dispatch(orderByPoblation(e.target.value));
       setCurrentPage(1);
-      if (order === "sort") {
+      if (
+         order.filter === "sort" &&
+         filterSort.current.selectedOptions[0].value
+      ) {
+         filterSort.current.selectedOptions[0].selected = false;
+         filterSort.current.firstElementChild.selected = true;
       }
-      setOrder(`poblation`);
       console.log(e.target);
+      setOrder({ filter: `poblation`, order: e.target.value });
    };
 
    function handleFilterContinent(e) {
       e.preventDefault();
       dispatch(filterByContinent(e.target.value));
       setCurrentPage(1);
+      filterSort.current.firstElementChild.selected = true;
+      filterPoblation.current.firstElementChild.selected = true;
    }
 
    function handleFilterActivity(e) {
       dispatch(filterByActivity(e.target.value));
+      filterSort.current.firstElementChild.selected = true;
+      filterPoblation.current.firstElementChild.selected = true;
       //console.log(e.target.value)
    }
 
@@ -134,7 +153,7 @@ const Home = () => {
          )}
          <div className="filterInputs">
             <select
-               className="select"
+               ref={filterPoblation}
                onChange={(e) => handleFilterPoblation(e)}
             >
                <option className="option" value="0">
@@ -143,7 +162,7 @@ const Home = () => {
                <option value="asc">Ascendente</option>
                <option value="desc">Descendente</option>
             </select>
-            <select onChange={(event) => handleSort(event)}>
+            <select ref={filterSort} onChange={(event) => handleSort(event)}>
                <option>Ordenar por nombre</option>
                <option value="asc">Ascendente</option>
                <option value="desc">Descendente</option>
