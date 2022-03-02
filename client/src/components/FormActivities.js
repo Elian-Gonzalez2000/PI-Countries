@@ -145,15 +145,19 @@ export const FormActivity = () => {
    const handleSelect = (e) => {
       let findCountry =
          allcountries && allcountries.filter((el) => el.ID === e.target.value);
-      setFlagsImg([
-         ...flagsImg,
-         { flag: findCountry[0].flagImg, countryID: findCountry[0].ID },
-      ]);
-      console.log(findCountry);
-      setInput({
-         ...input,
-         countries: [...input.countries, e.target.value],
-      });
+      if (!input.countries.includes(e.target.value)) {
+         setFlagsImg([
+            ...flagsImg,
+            { flag: findCountry[0].flagImg, countryID: findCountry[0].ID },
+         ]);
+         console.log(findCountry);
+
+         setInput({
+            ...input,
+            countries: [...input.countries, e.target.value],
+         });
+         console.log("No se encuentra");
+      }
    };
 
    const handleCheck = (e) => {
