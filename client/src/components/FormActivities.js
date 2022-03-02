@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { postActivities, getCountries } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 //import "./FormActivities.css";
 
 const ContainerForm = styled.div`
@@ -150,13 +151,12 @@ export const FormActivity = () => {
             ...flagsImg,
             { flag: findCountry[0].flagImg, countryID: findCountry[0].ID },
          ]);
-         console.log(findCountry);
+         //console.log(findCountry);
 
          setInput({
             ...input,
             countries: [...input.countries, e.target.value],
          });
-         console.log("No se encuentra");
       }
    };
 
@@ -193,21 +193,34 @@ export const FormActivity = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(input);
+      //console.log(input);
       if (!input.name) {
-         alert("Escriba una actividad para agregarla");
+         Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Escriba una actividad para agregarla",
+         });
       } else {
-         dispatch(postActivities(input));
-         alert("actividad creada");
+         Swal.fire({
+            title: "¿Quieres guardar la actividad?",
+            showCancelButton: true,
+            confirmButtonText: "Save",
+         }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+               dispatch(postActivities(input));
+               setInput({
+                  countries: [],
+                  name: "",
+                  duracion: "",
+                  dificultad: "",
+                  temporada: "",
+               });
+               setFlagsImg([]);
+               Swal.fire("¡Actividad guardada!", "", "success");
+            }
+         });
       }
-
-      setInput({
-         countries: [],
-         name: "",
-         duracion: "",
-         dificultad: "",
-         temporada: "",
-      });
    };
 
    useEffect(() => {
@@ -345,6 +358,7 @@ export const FormActivity = () => {
                         })}
                   </ul>
                </CountriesSelected>
+
                <button
                   className="btnSubmit"
                   type="submit"
