@@ -364,7 +364,7 @@ export const FormActivity = () => {
                   type="submit"
                   disabled={errors.name && true}
                >
-                  Create
+                  Crear Actividad
                </button>
             </form>
          </ContainerForm>
