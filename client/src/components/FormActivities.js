@@ -3,7 +3,6 @@ import { postActivities, getCountries } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Swal from "sweetalert2";
-//import "./FormActivities.css";
 
 const ContainerForm = styled.div`
    margin-top: 2rem;
@@ -25,11 +24,17 @@ const ContainerForm = styled.div`
          margin-top: 2.5rem;
          color: var(--text-light-color);
          background-color: var(--first-color);
-         border: none;
+         border: 1px solid var(--first-color);
          border-radius: 5px;
          text-align: center;
          cursor: pointer;
          outline: none;
+         transition: 0.3s ease-in-out all;
+
+         &:hover {
+            color: var(--first-color);
+            background-color: var(--white-color);
+         }
       }
    }
 
