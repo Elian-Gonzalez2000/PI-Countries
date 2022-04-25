@@ -4,7 +4,8 @@
 
 .home h2 {
    color: var(--first-color);
-   margin-bottom: 2rem;
+   margin-bottom: 2.5rem;
+   margin-top: 2.5rem;
 }
 
 input[type="text"] {
