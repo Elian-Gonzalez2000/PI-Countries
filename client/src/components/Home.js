@@ -133,7 +133,7 @@ const Home = () => {
    };
    //console.log("12", countries);
    return (
-      <div className="home container">
+      <div className="home container" style={{ minHeight: "100vh" }}>
          {isLoading && (
             <div className="preloader">
                <img src={loading} alt="cargando..." />

@@ -68,8 +68,8 @@ const Grid = styled.div`
 `;
 const Button = styled.button`
    display: inline-block;
-   font-size: 1rem;
-   padding: 0.5rem 1rem;
+   font-size: 1.2rem;
+   padding: 0.75rem 1.5rem;
    margin-top: 2.5rem;
    color: var(--text-light-color);
    background-color: var(--first-color);
@@ -92,7 +92,9 @@ const Init = () => {
          <BackgroundImage image={worldBannerBlue}>
             <BackgroundOpacity>
                <h1>Bienvenid@ a InfoCountries</h1>
-               <Button>Comenzar ya</Button>
+               <a href="/home">
+                  <Button>Comenzar ya</Button>
+               </a>
             </BackgroundOpacity>
          </BackgroundImage>
          <ContainerContent>
@@ -114,20 +116,24 @@ const Init = () => {
                      busqueda, entre estas opciones estan el filtrado por
                      continente, orden alfabetico o poblacion.
                   </p>
-                  <a href="#">
+                  <a
+                     href="https://restcountries.com"
+                     target="_blank"
+                     rel="noreferrer"
+                  >
                      <Button>Restcountries</Button>
                   </a>
                </div>
             </Grid>
          </ContainerContent>
-         <BackgroundImage image={findMapBanner}>
+         {/* <BackgroundImage image={findMapBanner}>
             <BackgroundOpacity opacityColor="rgba(0, 0, 0, 0.85)">
                <Grid gridColumn="2">
                   <h1>Bienvenid@ a InfoCountries</h1>
                   <Button>Comenzar ya</Button>
                </Grid>
             </BackgroundOpacity>
-         </BackgroundImage>
+         </BackgroundImage> */}
       </InitContainer>
    );
 };

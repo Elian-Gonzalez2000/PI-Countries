@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const ContainerForm = styled.div`
    margin-top: 2rem;
+   min-height: 100vh;
 
    h2 {
       color: var(--first-color);
@@ -281,13 +282,13 @@ export const FormActivity = () => {
                         value={input.duracion}
                         onChange={(e) => handleChange(e)}
                      >
-                        <option value="0">Select Duration</option>
+                        <option value="0">Seleccionar Duración</option>
                         <option value="30">30 min</option>
-                        <option value="1">1 hour</option>
-                        <option value="2">2 hour</option>
-                        <option value="3">3 hour</option>
-                        <option value="4">4 hour</option>
-                        <option value="5">more than 5 hours</option>
+                        <option value="1">1 horas</option>
+                        <option value="2">2 horas</option>
+                        <option value="3">3 horas</option>
+                        <option value="4">4 horas</option>
+                        <option value="5">mas de 5 hours</option>
                      </select>
                   </div>
                   <div className="selectDifficulty">
@@ -297,12 +298,12 @@ export const FormActivity = () => {
                         value={input.dificultad}
                         onChange={(e) => handleChange(e)}
                      >
-                        <option value="0">Select Difficult</option>
-                        <option value="1">1- Beginner</option>
-                        <option value="2">2- Low</option>
-                        <option value="3">3- Medium</option>
-                        <option value="4">4- High</option>
-                        <option value="5">5- Professional</option>
+                        <option value="0">Seleccionar Dificultad</option>
+                        <option value="1">1- Inicial</option>
+                        <option value="2">2- Baja</option>
+                        <option value="3">3- Media</option>
+                        <option value="4">4- Dificil</option>
+                        <option value="5">5- Profesional</option>
                      </select>
                   </div>
                </ContainerInputs>

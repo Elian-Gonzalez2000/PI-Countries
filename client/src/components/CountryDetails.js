@@ -52,7 +52,10 @@ const CountryDetails = () => {
 
    //console.log(details);
    return (
-      <div className="countryDetails container margin-auto">
+      <div
+         className="countryDetails container margin-auto"
+         style={{ minHeight: "100vh" }}
+      >
          {isLoading && (
             <div className="preloader">
                {" "}
