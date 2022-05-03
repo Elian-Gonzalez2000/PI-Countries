@@ -93,7 +93,7 @@ const Init = () => {
          <BackgroundImage image={worldBannerBlue}>
             <BackgroundOpacity>
                <h1>Bienvenid@ a InfoCountries</h1>
-               <Link to={"./home"}>
+               <Link to={"/home"}>
                   <Button>Comenzar ya</Button>
                </Link>
             </BackgroundOpacity>
