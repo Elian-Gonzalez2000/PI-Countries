@@ -22,10 +22,7 @@ function App() {
          <Router>
             <Nav />
             <Routes>
-               <Route
-                  path="/PI-Countries/client/build/index.html"
-                  element={<Init />}
-               />
+               <Route path="/PI-Countries/client/build/" element={<Init />} />
                <Route
                   path="/PI-Countries/client/build/home"
                   element={<Home />}
