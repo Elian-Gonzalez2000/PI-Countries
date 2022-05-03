@@ -22,13 +22,10 @@ function App() {
          <Router>
             <Nav />
             <Routes>
-               <Route path="/" element={<Init />} />
+               <Route path="/index" element={<Init />} />
                <Route path="/home" element={<Home />} />
                <Route path="/home/:id" element={<CountryDetails />} />
-               <Route
-                  path="/PI-Countries/client/build/activity"
-                  element={<FormActivity />}
-               />
+               <Route path="/activity" element={<FormActivity />} />
             </Routes>
             <Footer>
                <p className="text-center">
