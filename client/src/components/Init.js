@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import worldBannerBlue from "../assest/world-banner-blue3.jpg";
 import findMapBanner from "../assest/find-map-banner.jpg";
 
@@ -92,9 +93,9 @@ const Init = () => {
          <BackgroundImage image={worldBannerBlue}>
             <BackgroundOpacity>
                <h1>Bienvenid@ a InfoCountries</h1>
-               <a href="/home">
+               <Link to={"./home"}>
                   <Button>Comenzar ya</Button>
-               </a>
+               </Link>
             </BackgroundOpacity>
          </BackgroundImage>
          <ContainerContent>
@@ -116,13 +117,13 @@ const Init = () => {
                      busqueda, entre estas opciones estan el filtrado por
                      continente, orden alfabetico o poblacion.
                   </p>
-                  <a
+                  <Link
                      href="https://restcountries.com"
                      target="_blank"
                      rel="noreferrer"
                   >
                      <Button>Restcountries</Button>
-                  </a>
+                  </Link>
                </div>
             </Grid>
          </ContainerContent>
