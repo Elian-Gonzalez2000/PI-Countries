@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setLoadStatus } from "../actions";
+import { connectionString, setLoadStatus } from "../actions";
 import styled from "styled-components";
 import ActivityCard from "./ActivityCard";
 import loading from "../assest/loader.svg";
@@ -39,9 +39,10 @@ const CountryDetails = () => {
    const [details, setDetails] = useState({});
    const isLoading = useSelector((state) => state.isLoading);
    const dispatch = useDispatch();
+
    useEffect(() => {
       dispatch(setLoadStatus(true));
-      fetch(`http://localhost:3001/countries/${id}`)
+      fetch(`${connectionString}/countries/${id}`)
          .then((response) => response.json())
          .then((json) => {
             dispatch(setLoadStatus(false));
