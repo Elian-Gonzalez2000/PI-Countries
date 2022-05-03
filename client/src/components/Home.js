@@ -201,10 +201,7 @@ const Home = () => {
             typeof currentCountries != "string" ? (
                currentCountries.map((country) => {
                   return (
-                     <Link
-                        key={country.ID}
-                        to={`/PI-Countries/client/build/home/${country.ID}`}
-                     >
+                     <Link key={country.ID} to={`/home/${country.ID}`}>
                         <CountryCard
                            key={country.ID}
                            name={country.name}

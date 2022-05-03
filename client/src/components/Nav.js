@@ -40,15 +40,11 @@ class Nav extends Component {
          <NavBarContainer>
             <NavBar>
                <div className="logo">
-                  <Link to="/PI-Countries/client/build/index">Inicio</Link>
+                  <Link to="/">Inicio</Link>
                </div>
                <div className="nav-links">
-                  <Link to="/PI-Countries/client/build/home">
-                     Buscar Paises
-                  </Link>
-                  <Link to="/PI-Countries/client/build/activity">
-                     Crear Actividad
-                  </Link>
+                  <Link to="/home">Buscar Paises</Link>
+                  <Link to="/activity">Crear Actividad</Link>
                </div>
             </NavBar>
          </NavBarContainer>
