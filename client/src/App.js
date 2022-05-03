@@ -1,7 +1,7 @@
 import "./App.css";
 import Nav from "./components/Nav.js";
 import Home from "./components/Home.js";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Init from "./components/Init";
 import CountryDetails from "./components/CountryDetails";
 import { FormActivity } from "./components/FormActivities";
@@ -23,7 +23,7 @@ function App() {
             <Nav />
             <Routes>
                <Route
-                  path="/PI-Countries/client/build/index.html"
+                  path="/PI-Countries/client/build/index"
                   element={<Init />}
                />
                <Route
