@@ -113,10 +113,16 @@ const initialState = {
 
 export function validate(input) {
    let errors = {};
-   if (!input.name) {
+   if (!input.name.trim()) {
       errors.name = "Nombre de actividad es requerido";
-   } else if (!/^[a-z ,.'-]+$/i.test(input.name)) {
+      errors.error = true;
+   } else if (!/^[a-z ,.'-]+$/i.test(input.name.trim())) {
       errors.name = "Actividad invalida";
+      errors.error = true;
+   } else if (input.countries.length === 0) {
+      errors.countries = "Debe escoger al menos un pais para la actividad";
+   } else if (!errors.name && !errors.countries) {
+      errors.error = false;
    }
 
    return errors;
@@ -198,13 +204,18 @@ export const FormActivity = () => {
    };
 
    const handleSubmit = (e) => {
+      setErrors(
+         validate({
+            ...input,
+         })
+      );
       e.preventDefault();
       //console.log(input);
-      if (!input.name) {
+      if (errors.error) {
          Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Escriba una actividad para agregarla",
+            text: "Ingrese los datos correctamente",
          });
       } else {
          Swal.fire({
@@ -273,6 +284,9 @@ export const FormActivity = () => {
                               );
                            })}
                      </select>
+                     {errors.countries && (
+                        <p className="inputErrorMessage">{errors.countries}</p>
+                     )}
                   </div>
 
                   <div className="duration">
@@ -368,7 +382,7 @@ export const FormActivity = () => {
                <button
                   className="btnSubmit"
                   type="submit"
-                  disabled={errors.name && true}
+                  disabled={errors.error && true}
                >
                   Crear Actividad
                </button>

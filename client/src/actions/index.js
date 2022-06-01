@@ -72,8 +72,8 @@ export function getActivities() {
 export function postActivities(payload) {
    return (dispatch) => {
       fetch(`${connectionString}/activity/`, {
-         method: "POST", // or "PUT"
-         body: JSON.stringify(payload), // data can be `string` or {object}!
+         method: "POST",
+         body: JSON.stringify(payload),
          headers: {
             "Content-Type": "application/json",
          },

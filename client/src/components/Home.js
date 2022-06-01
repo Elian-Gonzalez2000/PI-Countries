@@ -181,7 +181,7 @@ const Home = () => {
                <option value="All">Todas</option>
                {allActivities &&
                   allActivities.map((activity, i) => (
-                     <option key={i} value={activity.name}>
+                     <option key={i + activity.name} value={activity.name}>
                         {activity.name}
                      </option>
                   ))}
