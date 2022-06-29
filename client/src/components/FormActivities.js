@@ -129,6 +129,7 @@ export const FormActivity = () => {
    const [errors, setErrors] = useState({
       name: "",
       countries: [],
+      error: false,
    });
    const [input, setInput] = useState({
       countries: [],
