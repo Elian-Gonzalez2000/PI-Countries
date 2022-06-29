@@ -31,6 +31,10 @@ export function getCountries() {
          .then((json) => {
             dispatch(setLoadStatus(false));
             return dispatch({ type: GET_COUNTRIES, payload: json });
+         })
+         .catch((err) => {
+            //console.log(err);
+            dispatch(setLoadStatus(false));
          });
    };
 }
@@ -43,6 +47,10 @@ export function getCountriesByName(input) {
          .then((json) => {
             dispatch(setLoadStatus(false));
             return dispatch({ type: GET_COUNTRIES_BY_NAME, payload: json });
+         })
+         .catch((err) => {
+            //console.log(err);
+            dispatch(setLoadStatus(false));
          });
    };
 }
@@ -81,7 +89,7 @@ export function postActivities(payload) {
          .then((res) => res.json())
          .catch((error) => console.error("Error:", error))
          .then((data) => {
-            console.log("Success:", data);
+            //console.log("Success:", data);
             return data;
          });
    };

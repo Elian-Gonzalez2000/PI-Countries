@@ -220,8 +220,9 @@ export const FormActivity = () => {
       } else {
          Swal.fire({
             title: "¿Quieres guardar la actividad?",
+            icon: "question",
             showCancelButton: true,
-            confirmButtonText: "Save",
+            confirmButtonText: "Guardar",
          }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
