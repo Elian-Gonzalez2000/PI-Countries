@@ -107,10 +107,6 @@ const CountriesSelected = styled.div`
    }
 `;
 
-const initialState = {
-   errors: {},
-};
-
 export function validate(input) {
    let errors = {};
    if (!input.name.trim()) {
@@ -130,7 +126,10 @@ export function validate(input) {
 
 export const FormActivity = () => {
    const dispatch = useDispatch();
-   const [errors, setErrors] = useState(initialState.errors);
+   const [errors, setErrors] = useState({
+      name: "",
+      countries: [],
+   });
    const [input, setInput] = useState({
       countries: [],
       name: "",
@@ -204,12 +203,12 @@ export const FormActivity = () => {
    };
 
    const handleSubmit = (e) => {
+      e.preventDefault();
       setErrors(
          validate({
             ...input,
          })
       );
-      e.preventDefault();
       //console.log(input);
       if (errors.error) {
          Swal.fire({
@@ -380,11 +379,7 @@ export const FormActivity = () => {
                   </ul>
                </CountriesSelected>
 
-               <button
-                  className="btnSubmit"
-                  type="submit"
-                  disabled={errors.error && true}
-               >
+               <button className="btnSubmit" type="submit">
                   Crear Actividad
                </button>
             </form>
