@@ -169,6 +169,12 @@ export const FormActivity = () => {
             ...input,
             countries: [...input.countries, e.target.value],
          });
+         setErrors(
+            validate({
+               ...input,
+               countries: [...input.countries, e.target.value],
+            })
+         );
       }
    };
 
