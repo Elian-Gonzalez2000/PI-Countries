@@ -9,7 +9,7 @@ export const FILTER_ACTIVITY = "FILTER_ACTIVITY";
 export const ORDER_BY_POBLATION = "ORDER_BY_POBLATION";
 export const GET_LOAD_STATUS = "GET_LOAD_STATUS";
 export const connectionString = true
-   ? "https://find-countries.herokuapp.com"
+   ? "https://pi-countries-production-36d8.up.railway.app"
    : "http://localhost:3001";
 
 export function setLoadStatus(payload) {
